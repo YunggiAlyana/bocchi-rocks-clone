@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bocchi Rocks Clone</title>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+    <div class="menu-button" id="menu-button">☰</div>
+    <div class="menu-overlay" id="menu-overlay">
+        <div class="menu-content">
+            <span class="close-button" id="close-button">✖</span>
+            <ul>
+                <li class="menu-item">TOP</li>
+                <li class="menu-item">NEWS</li>
+                <li class="menu-item">INTRODUCTION</li>
+                <li class="menu-item">CHARACTER</li>
+                <li class="menu-item">CAST & STAFF</li>
+                <li class="menu-item">STORY</li>
+                <li class="menu-item">MUSIC</li>
+                <li class="menu-item">MOVIE</li>
+            </ul>
+        </div>
+    </div>
+        
+    <div class="container">
+        <div class="left">
+            <div class="image-overlay"></div>
+            <img id="main-image" src="assets/img/btr-stage.jpeg" alt="Bocchi The Rock!" class="bg-image">
+            <img src="assets/img/bocchi-the-rock-re-re-seeklogo.svg" alt="Bocchi The Rock!" class="logo">
+            
+            <div class="thumbnail-container">
+                <img src="assets/img/btr-stage.jpeg" class="thumbnail" onclick="changeImage('assets/img/btr-stage.jpeg')">
+                <img src="assets/img/bocch1.jpeg" class="thumbnail" onclick="changeImage('assets/img/bocch1.jpeg')">
+                <img src="assets/img/hitori.jpg" class="thumbnail" onclick="changeImage('assets/img/hitori.jpg')">
+                <img src="assets/img/kitaaaa.jpg" class="thumbnail" onclick="changeImage('assets/img/kitaaaa.jpg')">
+                <img src="assets/img/nijika.jpg" class="thumbnail" onclick="changeImage('assets/img/nijika.jpg')">
+                <img src="assets/img/ryo.jpg" class="thumbnail" onclick="changeImage('assets/img/ryo.jpg')">
+            </div>
+        </div>
+        <div class="right">
+            <div class="title-container">
+                <h1 class="big-title">BOCCHI <br>THE ROCK!</h1>
+                <h2 class="overlay-title">THEATER COMPILATION</h2>
+            </div>
+            <div class="news">
+                <h3 class="news-title">NEWS</h3>
+                <div class="news-item">
+                    <a href="#" class="news-link">
+                        <span class="date">2025.02.17</span>
+                        <p>A teaser video for the anime "Bocchi the Rock!" collaboration project "The Road to Cable Ties" has been released!</p>
+                        <span class="arrow">></span>
+                    </a>
+                </div>
+                <div class="news-item">
+                    <a href="#" class="news-link">
+                        <span class="date">2025.02.17</span>
+                        <p>【LIVE footage】"Flashbacker" from "Kyuuzoubando TOUR "We will B"" released!</p>
+                        <span class="arrow">></span>
+                    </a>
+                </div>
+                <div class="news-item">
+                    <a href="#" class="news-link">
+                        <span class="date">2025.02.15</span>
+                        <p>【emergency】Bocchi the Radio! [Special Edition] Released!</p>
+                        <span class="arrow">></span>
+                    </a>
+                </div>
+                <div class="see-all">
+                    <a href="#">SEE ALL +</a>
+                </div>
+            </div>            
+        </div>
+    </div>
+    
+    <div class="video-container">
+        <iframe width="560" height="315" 
+            src="https://www.youtube.com/embed/EKedY3tedTY?autoplay=1&mute=1&loop=1&playlist=EKedY3tedTY" 
+            title="YouTube video player" frameborder="0" 
+            allow="autoplay; encrypted-media" allowfullscreen>
+        </iframe>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

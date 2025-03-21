@@ -1,0 +1,339 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: black;
+    color: white;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.left {
+    flex: 1;
+    position: relative;
+    overflow: hidden;
+}
+
+.bg-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.right {
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 40px;
+    position: relative;
+}
+
+/* New title container to properly organize layout */
+.title-container {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+}
+
+.big-title {
+    font-size: clamp(50px, 10vw, 150px);
+    font-weight: bold;
+    color: #b76de9;
+    position: absolute;
+    top: 0;
+    left: 0;
+    line-height: 1;
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif;
+    z-index: 5;
+}
+
+.overlay-title {
+    font-size: clamp(30px, 5vw, 75px);
+    font-weight: bold;
+    color: yellow;
+    position: absolute;
+    top: 120px;
+    left: 0;
+    text-transform: uppercase;
+    font-family: 'Anton', sans-serif;
+    z-index: 5;
+}
+
+.news {
+    width: 90%;
+    max-width: 500px;
+    margin-top: 60px; /* Reduced from 300px */
+    position: relative;
+    z-index: 10;
+}
+
+.news-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #b76de9;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.news-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #666;
+}
+
+.news-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+}
+
+.news-link:hover {
+    color: yellow;
+    transition: color 0.3s ease-in-out;
+}
+
+.date {
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    min-width: 80px;
+}
+
+.news-link p {
+    font-size: 14px;
+    flex: 1;
+    margin-left: 10px;
+}
+
+.arrow {
+    font-size: 16px;
+    color: white;
+}
+
+.see-all {
+    text-align: right;
+    margin-top: 10px;
+}
+
+.see-all a {
+    font-size: 12px;
+    text-decoration: none;
+    color: white;
+}
+
+.see-all a:hover {
+    color: yellow;
+    transition: color 0.3s ease-in-out;
+}
+
+.logo {
+    position: absolute;
+    bottom: 20px;
+    left: 90px;
+    max-width: 70%;
+    min-width: 200px;
+    height: auto;
+    z-index: 1;
+}
+
+/* Gambar utama */
+#main-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 100vh;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Overlay untuk transisi gambar utama */
+.image-overlay {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: #b76de9;
+    z-index: 2;
+    pointer-events: none; /* Supaya tidak menghalangi klik thumbnail */
+}
+
+/* Thumbnail Container */
+.thumbnail-container {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 2;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out, border 0.2s ease-in-out;
+    border: 2px solid transparent; /* Border default transparan */
+}
+
+/* Video Container */
+.video-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 50px auto;
+    display: flex;
+    justify-content: center;
+}
+
+.video-container iframe {
+    width: 100%;
+    height: 400px;
+}
+
+/* Responsif Mobile */
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        overflow-y: auto;
+    }
+
+    .left {
+        width: 100%;
+        height: 50vh;
+    }
+
+    .right {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .title-container {
+        height: auto;
+        margin-bottom: 60px;
+    }
+
+    .big-title {
+        position: relative;
+        text-align: center;
+    }
+
+    .overlay-title {
+        position: relative;
+        top: 10px;
+        text-align: center;
+    }
+
+    .news {
+        margin: 0 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .thumbnail-container {
+        bottom: 20px;  /* Tetap di bawah */
+        left: 10px;    /* Dekatkan ke kiri */
+        flex-direction: column; /* Pastikan tetap vertikal */
+        gap: 5px;
+    }
+
+    .thumbnail {
+        width: 50px;
+        height: 50px;
+    }
+
+    .video-container iframe {
+        height: 250px;
+    }
+}
+
+/* Tombol menu di kanan atas */
+.menu-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: black;
+    color: white;
+    padding: 10px 15px;
+    font-size: 24px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 1000; /* Tinggi saat menu tertutup */
+    transition: opacity 0.3s ease;
+}
+
+/* Overlay menu */
+.menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(149, 43, 255, 0.9);
+    clip-path: circle(0% at 100% 0%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+/* Konten menu */
+.menu-content {
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    font-family: 'Anton', sans-serif;
+}
+.nmenu-content:hover {
+    color: yellow;
+    transition: color 0.3s ease-in-out;
+}    
+.menu-content ul {
+    list-style: none;
+    padding: 0;
+}
+
+.menu-content li {
+    margin: 15px 0;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* Tombol close */
+.close-button {
+    position: fixed;
+    top: 25px;
+    right: 30px;
+    font-size: 28px;
+    color: white;
+    cursor: pointer;
+    z-index: 1100;
+    opacity: 1;
+}
+
+.menu-active .menu-button {
+    z-index: 500;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.menu-active .close-button {
+    z-index: 1100;
+    opacity: 1;
+}
