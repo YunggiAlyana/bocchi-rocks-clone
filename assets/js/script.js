@@ -130,25 +130,32 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    // Hover effect untuk menu items
-    menuItems.forEach(item => {
-        item.addEventListener("mouseover", function () {
-            gsap.to(this, {
-                scale: 1.1,
+  // Hover effect hanya pada teks yang ditunjuk
+menuItems.forEach(item => {
+    item.addEventListener("mouseover", function () {
+        // Pastikan hanya teks dalam elemen yang berubah warna
+        const textElement = this.querySelector("span, a");
+        if (textElement) {
+            gsap.to(textElement, {
                 color: "yellow",
                 duration: 0.3,
                 ease: "power2.out"
             });
-        });
-        item.addEventListener("mouseout", function () {
-            gsap.to(this, {
-                scale: 1,
+        }
+    });
+
+    item.addEventListener("mouseout", function () {
+        const textElement = this.querySelector("span, a");
+        if (textElement) {
+            gsap.to(textElement, {
                 color: "",
                 duration: 0.3,
                 ease: "power2.out"
             });
-        });
+        }
     });
+});
+
 
     // Event listener untuk klik menu "NEWS"
     const newsMenuItem = [...menuItems].find(item => item.textContent.trim() === "NEWS");
