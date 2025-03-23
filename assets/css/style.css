@@ -300,7 +300,7 @@ body {
     font-size: 40px;
     font-family: 'Anton', sans-serif;
 }
-.nmenu-content:hover {
+.menu-content:hover {
     color: yellow;
     transition: color 0.3s ease-in-out;
 }    
