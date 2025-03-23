@@ -1,7 +1,9 @@
 // Register GSAP ScrollTrigger plugin
+// Mengaktifkan plugin ScrollTrigger agar bisa digunakan untuk animasi saat scroll
 gsap.registerPlugin(ScrollTrigger);
 
-// Initial animations when the page loads
+// Animasi awal saat halaman dimuat
+// Elemen-elemen masuk dengan efek fade dan slide
 gsap.from(".left", { 
     x: -100, 
     opacity: 0, 
@@ -18,13 +20,13 @@ gsap.from([".logo", ".title-container", ".news"], {
     stagger: 0.2 
 });
 
-// Animation for news items with scroll trigger
+// Animasi untuk news items saat di-scroll ke viewport
 gsap.from(".news-item", { 
     y: 50, 
     opacity: 0, 
-    duration: 0.8, 
+    duration: 1, 
     ease: "power3.out", 
-    stagger: 0.2,
+    stagger: 0.15,
     scrollTrigger: {
         trigger: ".news",
         start: "top 80%", 
@@ -33,7 +35,7 @@ gsap.from(".news-item", {
     }
 });
 
-// Image gallery logic
+// Image gallery logic - perubahan gambar utama berdasarkan thumbnail yang diklik
 document.addEventListener("DOMContentLoaded", function () {
     const mainImage = document.getElementById("main-image");
     const overlay = document.querySelector(".image-overlay");
@@ -45,8 +47,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function resetBorders() {
         thumbnails.forEach(thumb => {
-            thumb.style.border = "none";
-            thumb.style.pointerEvents = "auto";
+            gsap.to(thumb, {
+                borderColor: "transparent",
+                borderWidth: 2,
+                duration: 0.3
+            });
         });
     }
 
@@ -54,15 +59,13 @@ document.addEventListener("DOMContentLoaded", function () {
         if (event.target.classList.contains("thumbnail") && event.target !== selectedThumbnail) {
             let index = [...thumbnailContainer.children].indexOf(event.target);
             let newImageSrc = event.target.src;
-
-            resetBorders();
+            resetBorders(); // Menghapus border sebelumnya
 
             gsap.to(event.target, {
                 borderColor: overlayColors[index] || "#b76de9",
                 borderWidth: 3,
                 borderStyle: "solid",
-                duration: 0.3,
-                ease: "power2.out"
+                duration: 0.3
             });
 
             selectedThumbnail = event.target;
@@ -73,8 +76,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 duration: 0.3,
                 ease: "power2.inOut",
                 onComplete: () => {
-                    mainImage.src = newImageSrc;
-
+                    // Efek fade-in saat mengganti gambar utama
+                    gsap.to(mainImage, { 
+                        opacity: 0, 
+                        duration: 0.3, 
+                        onComplete: () => {
+                            mainImage.src = newImageSrc;
+                            gsap.to(mainImage, { opacity: 1, duration: 0.3 });
+                        }
+                    });
+                    
                     gsap.to(overlay, {
                         left: "100%",
                         duration: 0.3,
@@ -87,23 +98,9 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
     });
-
-    thumbnails.forEach((thumb, index) => {
-        thumb.addEventListener("mouseover", function () {
-            if (thumb !== selectedThumbnail) {
-                this.style.border = `3px solid ${overlayColors[index] || "#b76de9"}`;
-            }
-        });
-
-        thumb.addEventListener("mouseout", function () {
-            if (thumb !== selectedThumbnail) {
-                this.style.border = "none";
-            }
-        });
-    });
 });
 
-// Menu functionality
+// Menu functionality - animasi buka/tutup menu dengan GSAP
 document.addEventListener("DOMContentLoaded", function () {
     const menuButton = document.getElementById("menu-button");
     const closeButton = document.getElementById("close-button");
@@ -111,28 +108,29 @@ document.addEventListener("DOMContentLoaded", function () {
     const menuItems = document.querySelectorAll(".menu-item");
     const body = document.body;
 
-    menuButton.addEventListener("click", function () {
+    function toggleMenu(open) {
         gsap.to(menuOverlay, {
-            clipPath: "circle(150% at 100% 0%)",
+            clipPath: open ? "circle(150% at 100% 0%)" : "circle(0% at 100% 0%)",
             duration: 0.5,
-            ease: "power3.out"
-        });
-
-        body.classList.add("menu-active");
-    });
-
-    closeButton.addEventListener("click", function () {
-        gsap.to(menuOverlay, {
-            clipPath: "circle(0% at 100% 0%)",
-            duration: 0.5,
-            ease: "power3.in",
+            ease: "power3.out",
             onComplete: () => {
-                body.classList.remove("menu-active");
+                if (!open) body.classList.remove("menu-active");
             }
         });
+        if (open) body.classList.add("menu-active");
+    }
+
+    menuButton.addEventListener("click", () => toggleMenu(true));
+    closeButton.addEventListener("click", () => toggleMenu(false));
+
+    // Tutup menu jika klik di luar menu-content
+    menuOverlay.addEventListener("click", function (event) {
+        if (!event.target.closest(".menu-content")) {
+            toggleMenu(false);
+        }
     });
 
-    // Hover effect for menu items
+    // Hover effect untuk menu items
     menuItems.forEach(item => {
         item.addEventListener("mouseover", function () {
             gsap.to(this, {
@@ -142,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
                 ease: "power2.out"
             });
         });
-
         item.addEventListener("mouseout", function () {
             gsap.to(this, {
                 scale: 1,
@@ -155,55 +152,17 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Event listener untuk klik menu "NEWS"
     const newsMenuItem = [...menuItems].find(item => item.textContent.trim() === "NEWS");
-    
     if (newsMenuItem) {
-        console.log("NEWS menu ditemukan, menambahkan event listener...");
-        
         newsMenuItem.addEventListener("click", function (event) {
             event.preventDefault();
-            console.log("Menu NEWS diklik, menjalankan animasi...");
-            
             gsap.to(menuOverlay, {
                 clipPath: "circle(0% at 100% 0%)",
                 duration: 0.5,
                 ease: "power3.in",
                 onComplete: () => {
-                    console.log("Animasi selesai, pindah ke news.html");
                     window.location.href = "news.html";
                 }
             });
         });
-    } else {
-        console.warn("Menu NEWS tidak ditemukan!");
     }
-});
-
-// Function to change image
-function changeImage(src) {
-    const mainImage = document.getElementById("main-image");
-    if (mainImage) {
-        mainImage.src = src;
-    }
-}
-document.addEventListener("DOMContentLoaded", function () {
-    const menuButton = document.getElementById("menu-button");
-    const closeButton = document.getElementById("close-button");
-    const body = document.body;
-
-    // Buka menu
-    menuButton.addEventListener("click", function () {
-        body.classList.add("menu-active");
-    });
-
-    // Tutup menu
-    closeButton.addEventListener("click", function () {
-        body.classList.remove("menu-active");
-    });
-
-    // Tutup menu jika klik di luar menu-content
-    document.getElementById("menu-overlay").addEventListener("click", function (event) {
-        if (!event.target.closest(".menu-content")) {
-            body.classList.remove("menu-active");
-        }
-    });
 });
