@@ -94,3 +94,12 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 });
+document.querySelectorAll(".news-item").forEach(item => {
+    item.addEventListener("mouseenter", () => {
+        gsap.to(item, { scale: 1.05, backgroundColor: "rgba(255, 255, 255, 0.1)", duration: 0.3 });
+    });
+
+    item.addEventListener("mouseleave", () => {
+        gsap.to(item, { scale: 1, backgroundColor: "transparent", duration: 0.3 });
+    });
+});
