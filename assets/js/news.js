@@ -103,3 +103,12 @@ document.querySelectorAll(".news-item").forEach(item => {
         gsap.to(item, { scale: 1, backgroundColor: "transparent", duration: 0.3 });
     });
 });
+document.querySelectorAll(".news-item").forEach(item => {
+    item.addEventListener("mouseenter", () => {
+        gsap.to(item.querySelector(".content p"), { color: "yellow", duration: 0.3 });
+    });
+
+    item.addEventListener("mouseleave", () => {
+        gsap.to(item.querySelector(".content p"), { color: "#fff", duration: 0.3 });
+    });
+});
