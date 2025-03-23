@@ -13,8 +13,10 @@ body {
 .container {
     display: flex;
     height: 100vh;
-    overflow: hidden;
+    overflow-y: auto; /* Biar bisa scroll ke bawah */
+    overflow-x: hidden; /* Mencegah scroll ke samping */
 }
+
 
 .left {
     flex: 1;
@@ -73,7 +75,7 @@ body {
 .news {
     width: 90%;
     max-width: 500px;
-    margin-top: 60px; /* Reduced from 300px */
+    margin-top: 270px; /* Reduced from 300px */
     position: relative;
     z-index: 10;
 }
@@ -245,7 +247,10 @@ body {
         width: 100%;
         max-width: 100%;
     }
-
+    .news {
+        order: 1; /* Pastikan berita tetap di bawah */
+    }
+    
     .thumbnail-container {
         bottom: 20px;  /* Tetap di bawah */
         left: 10px;    /* Dekatkan ke kiri */
@@ -344,3 +349,4 @@ body {
     z-index: 1100;
     opacity: 1;
 }
+
