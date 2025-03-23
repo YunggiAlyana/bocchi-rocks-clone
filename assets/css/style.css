@@ -307,9 +307,8 @@ body {
 }
 
 .menu-content .menu-item:hover {
-    color: #FFD700; /* Warna kuning yang tidak terlalu terang */
-    transform: scale(1.1); /* Membesar sedikit saat hover */
-    box-shadow: 0px 4px 10px rgba(255, 215, 0, 0.3); /* Efek bayangan ringan */
+    color: yellow; 
+    transform: scale(1.1); 
 }
 
 .menu-content ul {
