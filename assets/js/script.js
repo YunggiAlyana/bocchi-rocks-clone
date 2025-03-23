@@ -173,3 +173,21 @@ menuItems.forEach(item => {
         });
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    const topLink = document.querySelector(".menu-item a[href='index.html']");
+    
+    if (topLink) {
+        topLink.addEventListener("click", function (event) {
+            event.preventDefault(); // Mencegah pindah halaman langsung
+            
+            gsap.to("#menu-overlay", {
+                clipPath: "circle(0% at 100% 0%)",
+                duration: 0.5,
+                ease: "power3.in",
+                onComplete: () => {
+                    window.location.href = "index.html"; // Pindah setelah animasi selesai
+                }
+            });
+        });
+    }
+});

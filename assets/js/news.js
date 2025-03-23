@@ -1,25 +1,26 @@
-// Register GSAP ScrollTrigger plugin if needed
-gsap.registerPlugin(ScrollTrigger);
+// Pastikan GSAP ScrollTrigger hanya didaftarkan jika belum terdaftar
+if (typeof ScrollTrigger !== "undefined") {
+    gsap.registerPlugin(ScrollTrigger);
+}
 
 // Menu functionality
 document.addEventListener("DOMContentLoaded", function () {
     const menuButton = document.getElementById("menu-button");
     const closeButton = document.getElementById("close-button");
     const menuOverlay = document.getElementById("menu-overlay");
-    const menuItems = document.querySelectorAll(".menu-item");
     const body = document.body;
 
-    menuButton.addEventListener("click", function () {
+    // Fungsi buka/tutup menu dengan GSAP
+    function openMenu() {
         gsap.to(menuOverlay, {
             clipPath: "circle(150% at 100% 0%)",
             duration: 0.5,
             ease: "power3.out"
         });
-
         body.classList.add("menu-active");
-    });
+    }
 
-    closeButton.addEventListener("click", function () {
+    function closeMenu() {
         gsap.to(menuOverlay, {
             clipPath: "circle(0% at 100% 0%)",
             duration: 0.5,
@@ -28,49 +29,68 @@ document.addEventListener("DOMContentLoaded", function () {
                 body.classList.remove("menu-active");
             }
         });
+    }
+
+    menuButton.addEventListener("click", openMenu);
+    closeButton.addEventListener("click", closeMenu);
+
+    // Tutup menu jika klik di luar menu-content
+    menuOverlay.addEventListener("click", function (event) {
+        if (!event.target.closest(".menu-content")) {
+            closeMenu();
+        }
     });
 
-    // Hover effect for menu items
-    menuItems.forEach(item => {
-        item.addEventListener("mouseover", function () {
-            gsap.to(this, {
+    // Tutup menu dengan tombol Escape
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && body.classList.contains("menu-active")) {
+            closeMenu();
+        }
+    });
+
+    // Event delegation untuk hover efek menu-item
+    document.querySelector(".menu-content ul").addEventListener("mouseover", function (event) {
+        if (event.target.classList.contains("menu-item")) {
+            gsap.to(event.target, {
                 scale: 1.1,
                 color: "yellow",
                 duration: 0.3,
                 ease: "power2.out"
             });
-        });
+        }
+    });
 
-        item.addEventListener("mouseout", function () {
-            gsap.to(this, {
+    document.querySelector(".menu-content ul").addEventListener("mouseout", function (event) {
+        if (event.target.classList.contains("menu-item")) {
+            gsap.to(event.target, {
                 scale: 1,
                 color: "",
                 duration: 0.3,
                 ease: "power2.out"
             });
-        });
+        }
     });
 
-    // Animation for news items when page loads
-    gsap.from(".news-item", { 
-        y: 50, 
-        opacity: 0, 
-        duration: 0.8, 
-        ease: "power3.out", 
+    // Animasi muncul untuk news items
+    gsap.from(".news-item", {
+        y: 50,
+        opacity: 0,
+        duration: 0.8,
+        ease: "power3.out",
         stagger: 0.2
     });
 
-    // Tutup menu jika klik di luar menu-content
-    document.getElementById("menu-overlay").addEventListener("click", function (event) {
-        if (!event.target.closest(".menu-content")) {
-            gsap.to(menuOverlay, {
-                clipPath: "circle(0% at 100% 0%)",
-                duration: 0.5,
-                ease: "power3.in",
-                onComplete: () => {
-                    body.classList.remove("menu-active");
+    // Smooth scrolling jika menu item memiliki anchor link
+    document.querySelectorAll(".menu-item").forEach(item => {
+        item.addEventListener("click", function () {
+            const targetId = this.getAttribute("data-target");
+            if (targetId) {
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    gsap.to(window, { scrollTo: targetElement, duration: 1, ease: "power2.out" });
+                    closeMenu();
                 }
-            });
-        }
+            }
+        });
     });
 });

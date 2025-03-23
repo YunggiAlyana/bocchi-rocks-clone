@@ -194,6 +194,17 @@ main {
     font-weight: bold;
     cursor: pointer;
 }
+.menu-content .menu-item:hover {
+    color: yellow; 
+    transform: scale(1.1); 
+}
+
+.menu-item a {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    padding: 10px 0;
+}
 
 /* Close button */
 .close-button {
@@ -202,7 +213,7 @@ main {
     right: 30px;
     font-size: 28px;
     color: white;
-    cursor: poenuinter;
+    cursor: pointer;
     z-index: 1100;
     opacity: 1;
 }
