@@ -98,10 +98,27 @@ main {
     width: 100%;
 }
 
+/* Efek hover untuk news item */
 .news-item {
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px 0;
-    display: flex;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+    will-change: transform;
+}
+
+.news-item:hover {
+    transform: translateY(-3px);
+}
+
+.content p {
+    transition: color 0.3s ease;
+}
+
+.read-more {
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.news-item:hover .read-more {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.1);
 }
 
 .date {
