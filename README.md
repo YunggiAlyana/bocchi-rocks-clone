@@ -1,56 +1,80 @@
 # Bocchi Rocks Clone
 
+![GitHub last commit](https://img.shields.io/github/last-commit/YunggiAlyana/bocchi-rocks-clone)
+![GitHub repo size](https://img.shields.io/github/repo-size/YunggiAlyana/bocchi-rocks-clone)
+
 ## Deskripsi Proyek
-Proyek ini adalah klon dari website Bocchi the Rock! yang dibuat dengan HTML, CSS, dan JavaScript. Tujuan proyek ini adalah mereplikasi tampilan dan animasi dari situs asli dengan berbagai efek interaktif.
+Website clone Bocchi the Rock! dengan fitur dinamis dan animasi interaktif. **Update terbaru** sekarang menggunakan sistem data terpusat untuk konten berita.
 
-## Fitur
-- **Tata Letak Responsif**: Desain yang bisa menyesuaikan dengan berbagai ukuran layar.
-- **Animasi GSAP**: Efek transisi yang halus dan interaktif.
-- **Navigasi Interaktif**: Thumbnail navigasi yang responsif.
-- **Efek Mouse Follow**: Logo kecil yang mengikuti pointer dengan efek melayang.
-- **Berita Terbaru**: Halaman berita yang menampilkan informasi terbaru tentang Bocchi the Rock!
+## Fitur Utama
+- 🎨 **Sistem Berita Dinamis** (Baru!)
+  - Data terpusat di `news-data.json`
+  - Auto-generate konten di index.html dan news.html
+  - Tampilkan 3 berita terbaru di homepage
+- 🌟 **Animasi GSAP** 
+  - Transisi halaman
+  - Efek hover interaktif
+  - Scroll animations
+- 📱 **Responsive Design**
+  - Mobile-first approach
+  - Adaptif untuk semua device
 
-## Struktur Folder
+## Struktur Folder Terbaru
 ```
-📂 BOCCHI-ROCKS-CLONE
-│── 📂 assets
-│   │── 📂 css
-│   │   │── news.css
-│   │   │── style.css
-│   │── 📂 img
-│   │   │── (Berbagai gambar terkait situs)
-│   │── 📂 js
-│   │   │── news.js
-│   │   │── script.js
-│── index.html
-│── news.html
-│── README.md
+📂 bocchi-rocks-clone
+├── 📂 assets
+│   ├── 📂 css
+│   │   ├── news.css       # Styles khusus halaman berita
+│   │   └── style.css      # Styles utama
+│   ├── 📂 data            # Folder baru!
+│   │   └── news-data.json # Sumber data terpusat
+│   ├── 📂 img
+│   │   ├── bocch1.jpeg
+│   │   ├── btr-stage.jpeg
+│   │   └── logo.svg
+│   └── 📂 js
+│       ├── news.js        # Logic halaman berita
+│       ├── script.js      # Logic utama
+│       └── shared.js      # Baru! Logic bersama
+├── index.html
+├── news.html
+└── README.md
 ```
 
 ## Cara Menjalankan
-1. Clone repository ini ke komputer Anda:
-   ```bash
-   git clone https://github.com/username/bocchi-rocks-clone.git
-   ```
-2. Buka file `index.html` di browser.
-3. Untuk pengembangan lebih lanjut, gunakan ekstensi **Live Server** di VS Code.
+```bash
+git clone https://github.com/YunggiAlyana/bocchi-rocks-clone.git
+cd bocchi-rocks-clone
+# Buka di browser favorit Anda
+```
 
-## Teknologi yang Digunakan
-- **HTML5**: Struktur halaman.
-- **CSS3**: Styling dan animasi dasar.
-- **JavaScript (Vanilla JS + GSAP)**: Efek interaktif dan animasi.
+## Teknologi Terbaru
+- 🛠️ **Core**
+  - HTML5 Semantik
+  - CSS3 Modern (Flexbox, Grid, Variables)
+- 🚀 **JavaScript**
+  - Vanilla ES6+
+  - GSAP 3.12.2 (Animasi)
+  - Fetch API (Data JSON)
+- 🔧 **Tools**
+  - Git Version Control
+  - Live Server Development
 
 ## Kontribusi
-Jika ingin berkontribusi:
-1. Fork repository ini.
-2. Buat branch baru untuk fitur yang ingin ditambahkan.
-3. Lakukan commit dan push ke branch tersebut.
-4. Kirimkan pull request.
+1. Fork repository
+2. Buat branch fitur (`git checkout -b fitur-anda`)
+3. Commit perubahan (`git commit -am 'Tambahkan fitur'`)
+4. Push ke branch (`git push origin fitur-anda`)
+5. Buat Pull Request
+
+**Panduan Commit Message:**
+- `feat`: Untuk fitur baru
+- `fix`: Untuk perbaikan bug
+- `docs`: Perubahan dokumentasi
+- `style`: Perbaikan format/style
 
 ## Lisensi
-Proyek ini dibuat untuk tujuan pembelajaran dan tidak memiliki keterkaitan dengan situs resmi Bocchi the Rock! atau pemilik hak cipta aslinya.
+Proyek edukasi open-source. Tidak berafiliasi dengan pemilik hak cipta Bocchi the Rock!.
 
 ---
-
-🚀 **Dukung proyek ini dengan memberi ⭐ di GitHub!**
-
+✨ **Dukung dengan memberi ⭐ jika project ini membantu!**
