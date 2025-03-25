@@ -80,6 +80,15 @@ body {
     z-index: 10;
 }
 
+#latest-news-container .news-item {
+    animation: none; /* Hapus animasi untuk news yang di-load secara dinamis */
+}
+
+#latest-news-container .news-item:hover {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
+}
+
 .news-title {
     font-size: 20px;
     font-weight: bold;
