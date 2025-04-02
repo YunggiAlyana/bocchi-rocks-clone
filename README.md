@@ -11,7 +11,7 @@ Website clone Bocchi the Rock! dengan fitur dinamis dan animasi interaktif. **Up
   - Data terpusat di `news-data.json`
   - Auto-generate konten di index.html dan news.html
   - Tampilkan 3 berita terbaru di homepage
-- 🌟 **Animasi GSAP**
+- 🌟 **Animasi GSAP** 
   - Transisi halaman
   - Efek hover interaktif
   - Scroll animations
@@ -43,6 +43,12 @@ Website clone Bocchi the Rock! dengan fitur dinamis dan animasi interaktif. **Up
 
 ## Diagram Arsitektur
 ```mermaid
+%%{init: {'theme': 'dark', 'themeVariables': { 
+    'primaryColor': '#1e1e1e',  
+    'primaryTextColor': '#ffffff',
+    'secondaryColor': '#252526',
+    'tertiaryColor': '#373737'
+}}}%%
 flowchart TD
     %% Frontend Interface
     subgraph "Frontend Interface"
