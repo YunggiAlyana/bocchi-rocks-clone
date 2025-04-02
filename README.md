@@ -11,7 +11,7 @@ Website clone Bocchi the Rock! dengan fitur dinamis dan animasi interaktif. **Up
   - Data terpusat di `news-data.json`
   - Auto-generate konten di index.html dan news.html
   - Tampilkan 3 berita terbaru di homepage
-- 🌟 **Animasi GSAP** 
+- 🌟 **Animasi GSAP**
   - Transisi halaman
   - Efek hover interaktif
   - Scroll animations
@@ -39,6 +39,64 @@ Website clone Bocchi the Rock! dengan fitur dinamis dan animasi interaktif. **Up
 ├── index.html
 ├── news.html
 └── README.md
+```
+
+## Diagram Arsitektur
+```mermaid
+flowchart TD
+    %% Frontend Interface
+    subgraph "Frontend Interface"
+        IDX["index.html"]:::frontend
+        NEWS["news.html"]:::frontend
+    end
+
+    %% CSS Styling
+    subgraph "CSS Styling"
+        STYLE["style.css"]:::css
+        NEWS_STYLE["news.css"]:::css
+    end
+
+    %% JavaScript Logic
+    subgraph "JavaScript Logic"
+        SCRIPT["script.js"]:::js
+        NEWS_JS["news.js"]:::js
+        SHARED_JS["shared.js"]:::js
+    end
+
+    %% Data Layer dan Assets
+    DATA(("news-data.json")):::data
+    ASSETS["Images"]:::assets
+
+    %% Relationships between HTML dan CSS
+    IDX -->|"references"| STYLE
+    NEWS -->|"references"| NEWS_STYLE
+
+    %% HTML Includes JavaScript
+    IDX -->|"includes"| SCRIPT
+    IDX -->|"includes"| SHARED_JS
+    NEWS -->|"includes"| NEWS_JS
+    NEWS -->|"includes"| SHARED_JS
+
+    %% JavaScript modifies DOM
+    SCRIPT -->|"modifies"| IDX
+    SHARED_JS -->|"modifies"| IDX
+    SHARED_JS -->|"modifies"| NEWS
+    NEWS_JS -->|"modifies"| NEWS
+
+    %% JavaScript fetches data
+    NEWS_JS -->|"fetches"| DATA
+    SHARED_JS -->|"fetches"| DATA
+
+    %% HTML uses Assets
+    IDX -->|"uses"| ASSETS
+    NEWS -->|"uses"| ASSETS
+
+    %% Styles
+    classDef frontend fill:#cce5ff,stroke:#2b8dd7,stroke-width:2px;
+    classDef css fill:#fde2e4,stroke:#f08a24,stroke-width:2px;
+    classDef js fill:#e2f0cb,stroke:#8cbf26,stroke-width:2px;
+    classDef data fill:#fff2cc,stroke:#e7a700,stroke-width:2px;
+    classDef assets fill:#d5e8d4,stroke:#82b366,stroke-width:2px;
 ```
 
 ## Cara Menjalankan
@@ -78,3 +136,4 @@ Proyek edukasi open-source. Tidak berafiliasi dengan pemilik hak cipta Bocchi th
 
 ---
 ✨ **Dukung dengan memberi ⭐ jika project ini membantu!**
+
