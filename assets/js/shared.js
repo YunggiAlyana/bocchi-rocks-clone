@@ -4,11 +4,14 @@ async function loadLatestNews() {
         const response = await fetch('assets/data/news-data.json');
         const newsData = await response.json();
         const sortedNews = newsData.sort((a, b) => new Date(b.date) - new Date(a.date));
+        
+        // Limit to 3 latest news for index page
+        const latestThreeNews = sortedNews.slice(0, 3);
 
-        // Render di index.html
+        // Render di index.html - only show 3 latest
         const newsContainer = document.getElementById('latest-news-container');
         if (newsContainer) {
-            newsContainer.innerHTML = sortedNews.map(news => `
+            newsContainer.innerHTML = latestThreeNews.map(news => `
                 <div class="news-item">
                     <a href="news.html" class="news-link">
                         <span class="date">${news.date}</span>
@@ -19,7 +22,7 @@ async function loadLatestNews() {
             `).join('');
         }
 
-        // Render di news.html
+        // Render di news.html - show all news
         const fullNewsContainer = document.querySelector('.news-container');
         if (fullNewsContainer) {
             fullNewsContainer.innerHTML = sortedNews.map(news => `
