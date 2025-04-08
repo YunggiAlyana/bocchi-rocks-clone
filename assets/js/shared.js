@@ -8,7 +8,7 @@ async function loadLatestNews() {
         // Render di index.html
         const newsContainer = document.getElementById('latest-news-container');
         if (newsContainer) {
-            newsContainer.innerHTML = latestNews.map(news => `
+            newsContainer.innerHTML = sortedNews.map(news => `
                 <div class="news-item">
                     <a href="news.html" class="news-link">
                         <span class="date">${news.date}</span>
